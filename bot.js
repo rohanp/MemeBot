@@ -29,10 +29,12 @@ login({email: process.env.EMAIL, password: process.env.PASSWORD},
 	              if (keywords(["stop", "unsubscribe", "no"])){
 	                api.sendMessage("Congratulations! You have successfully upgraded your meme subscription to 4 MPD (memes per day)"
 																 	, event.threadID)
-	              } else if (keywords(["fuck", "shit"])){
+	              } else if (keywords(["fuck", "shit", "bitch", "bish"])){
 	                api.sendMessage(navyseal, event.threadID)
 	              } else if (keywords(["what"])){
 									api.sendMessage("I am a sophisticated AI that locates the dankest memes on the internet and delivers them straight to ur inbox!", event.threadID)
+								} else if (keywords(["rohan"])){
+									api.sendMessage("I have not heard of this 'Rohan' fellow, but he seems cool introduce me.")
 								}
 	              else {
 	                api.sendMessage("Thank you for messaging rohbot! Your message will promptly be ignored : )", event.threadID)
