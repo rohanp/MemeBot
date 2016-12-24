@@ -12,8 +12,7 @@ var quotesFile = fs.readFileSync("./quippyQuotes.txt", "utf-8");
 var quotes = quotesFile.split("\n")
 
 var memes = fs.readdirSync('./memes')
-var memeOfTheDay = _.sample(memes)
-
+var memeOfTheDay = fs.createReadStream("memes/" + _.sample(memes))
 
 login({email: process.env.EMAIL, password: process.env.PASSWORD},
 
@@ -26,14 +25,13 @@ login({email: process.env.EMAIL, password: process.env.PASSWORD},
         subscribers.forEach(
           function (person){
 
-            if (_.indexOf( person.userID , users) == -1){
-              welcomeUser(person)
-            }
-              console.log(person.userID)
-
               api.sendMessage(_.sample(quotes), person.userID)
-              var meme = {attachment: fs.createReadStream("memes/" + memeOfTheDay)}
+              var meme = {attachment: memeOfTheDay}
               api.sendMessage(meme, person.userID)
+
+              if (_.indexOf( person.userID , users) == -1){
+                welcomeUser(person)
+              }
 
           }
         )
@@ -43,8 +41,7 @@ login({email: process.env.EMAIL, password: process.env.PASSWORD},
 
     function welcomeUser(person){
 
-      api.sendMessage("Congratulations! You have successfully subscribed to a lifetime membership for \
-                       fresh, organic, hand-picked memes delivered right to your inbox!")
+      api.sendMessage("Congratulations! You have successfully subscribed to a lifetime membership for fresh, organic, hand-picked memes delivered right to your inbox! Just say 'stop' to stop the messages!")
       users.push(person.userID)
       fs.appendFile('users.txt', '\n' + person.userID, function(){});
 

@@ -26,10 +26,10 @@ login({email: process.env.EMAIL, password: process.env.PASSWORD},
 
 								console.log("received message!")
 
-	              if (keywords(["stop"])){
+	              if (keywords(["stop", "unsubscribe", "no"])){
 	                api.sendMessage("Congratulations! You have successfully upgraded your meme subscription to 4 MPD (memes per day)"
 																 	, event.threadID)
-	              } else if (keyswords(["fuck", "shit"])){
+	              } else if (keywords(["fuck", "shit"])){
 	                api.sendMessage(navyseal, event.threadID)
 	              } else if (keywords(["what"])){
 									api.sendMessage("I am a sophisticated AI that locates the dankest memes on the internet and delivers them straight to ur inbox!", event.threadID)
