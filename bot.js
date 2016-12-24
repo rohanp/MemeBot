@@ -41,7 +41,7 @@ login({email: process.env.EMAIL, password: process.env.PASSWORD},
 
 							function keywords(arr){
 								for (e of arr){
-									if (event.body.indexOf(e) != -1)
+									if (event.body.toLowerCase().indexOf(e) != -1)
 										return true
 								}
 								return false
